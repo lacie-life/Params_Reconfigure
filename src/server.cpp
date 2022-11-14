@@ -13,7 +13,7 @@ void callback(params_reconfig::testConfig &config, uint32_t level) {
 
 int main(int argc, char **argv) {
     
-  ros::init(argc, argv, "dynamic_tutorials");
+  ros::init(argc, argv, "dynamic_reconf_server");
 
   dynamic_reconfigure::Server<params_reconfig::testConfig> server;
   dynamic_reconfigure::Server<params_reconfig::testConfig>::CallbackType f;
