@@ -9,7 +9,6 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 add_message_files(
-  DIRECTORY msg
   FILES reconfigureMsg.msg
 )
 
@@ -42,19 +41,19 @@ include_directories(
 )
 
 add_executable(${PROJECT_NAME}_node src/reconfigure_node.cpp)
-add_dependencies(${PROJECT_NAME}_node ${PROJECT_NAME}_gencfg ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(${PROJECT_NAME}_node ${PROJECT_NAME}_gencfg ${PROJECT_NAME}_generate_messages_cpp ${${PROJECT_NAME}_EXPORTED_TARGETS})
 target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
 )
 
 add_executable(server_node src/server.cpp)
-add_dependencies(server_node ${PROJECT_NAME}_gencfg)
+add_dependencies(server_node ${PROJECT_NAME}_gencfg ${${PROJECT_NAME}_EXPORTED_TARGETS})
 target_link_libraries(server_node
   ${catkin_LIBRARIES}
 )
 
 add_executable(publisher_node src/publisher.cpp)
-add_dependencies(publisher_node ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(publisher_node ${PROJECT_NAME}_generate_messages_cpp ${${PROJECT_NAME}_EXPORTED_TARGETS})
 target_link_libraries(publisher_node
   ${catkin_LIBRARIES}
 )
